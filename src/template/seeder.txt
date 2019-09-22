@@ -1,0 +1,17 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use {{ project.NameSpace }}\{{ model.FileType.NameSpace }}\{{ model.name }};
+
+class {{ file.name }} extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        factory({{ model.name }}::class, {{ file.FileType.get('count').value }})->create();
+    }
+}

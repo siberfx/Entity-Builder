@@ -1,0 +1,76 @@
+<?php
+
+namespace {{ project.NameSpace }}\{{ model.FileType.NameSpace }};
+{% if model.name == 'User' %}
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class User extends Authenticatable
+{
+    use Notifiable;
+{% else %}
+use Illuminate\Database\Eloquent\Model;
+
+class {{ model.name }} extends Model
+{
+{% endif %}
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = '{{ entity.tableName }}';
+
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = '{{ entity.primaryKey }}';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = {{ entity.FieldManager.hasIncrement }};
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = {{ entity.FieldManager.fillableText }};
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = {{ entity.FieldManager.hiddenText }};
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+{% for field in entity.FieldManager.list %}{% if field.cast %}
+        '{{ field.name }}' => '{{ field.cast }}',
+{% endif %}{% endfor %}
+    ];
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = {{ entity.FieldManager.hasCreateAndUpdateTimeStamp }};
+
+{% for relation in model.RelationManager.list %}
+    public function {{ relation.name }}()
+    {
+        return {{ relation.text }};
+    }
+{% endfor %}
+}

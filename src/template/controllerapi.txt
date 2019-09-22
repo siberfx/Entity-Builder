@@ -1,0 +1,76 @@
+<?php
+
+namespace {{ project.NameSpace }}\{{ file.FileType.NameSpace }};
+
+use {{ project.NameSpace }}\{{ request.FileType.NameSpace }}\{{ request.name }};
+use {{ project.NameSpace }}\{{ model.FileType.NameSpace }}\{{ model.name }};
+
+class {{ file.name }} extends Controller
+{
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $list = {{ model.name }}::all();
+        return response()->json(compact('list'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \{{ project.NameSpace }}\{{ request.FileType.NameSpace }}\{{ request.name }}  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store({{ request.name }} $request)
+    {
+        $item = new {{ model.name }};
+        $item->fill($request->validated());
+        $item->save();
+        return response()->json(compact('item'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $item = {{ model.name }}::findOrFail($id);
+        return response()->json(compact('item'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \{{ project.NameSpace }}\{{ request.FileType.NameSpace }}\{{ request.name }}  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update({{ request.name }} $request, $id)
+    {
+        $item = {{ model.name }}::findOrFail($id);
+        $item->update($request->validated());
+        return response()->json(compact('item'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $count = {{ model.name }}::destroy($id);
+        if ($count) {
+            return response()->json('OK');
+        }
+        return response()->json('Resource already deleted!', 410);
+    }
+}

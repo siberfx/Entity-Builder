@@ -1,0 +1,23 @@
+<?php
+
+namespace {{ project.NameSpace }}\{{ file.FileType.NameSpace }};
+
+use Illuminate\Http\Resources\Json\Resource;
+
+class {{ file.name }} extends Resource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function toArray($request)
+    {
+        return [
+{% for field in entity.FieldManager.list %}{% if field.hidden == false %}
+            '{{ field.name }}' => $this->{{ field.name }},
+{% endif %}{% endfor %}
+        ];
+    }
+}

@@ -1,0 +1,103 @@
+<?php
+
+namespace {{ project.NameSpace }}\{{ file.FileType.NameSpace }};
+
+use {{ project.NameSpace }}\{{ request.FileType.NameSpace }}\{{ request.name }};
+use {{ project.NameSpace }}\{{ model.FileType.NameSpace }}\{{ model.name }};
+
+class {{ file.name }} extends Controller
+{
+    protected $routePath = '{{ entity.snakeCase }}';
+    protected $viewPath = '{{ entity.snakeCase }}';
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $list = {{ model.name }}::all();
+        return view("$this->viewPath.index", compact('list'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $item = new {{ model.name }};
+        $item->_token = csrf_token();
+        $item->_uri = "/$this->routePath";
+        return view("$this->viewPath.form", compact('item'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \{{ project.NameSpace }}\{{ request.FileType.NameSpace }}\{{ request.name }}  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store({{ request.name }} $request)
+    {
+        $item = new {{ model.name }};
+        $item->fill($request->validated());
+        $item->save();
+        return redirect("/$this->routePath/$item->id");
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $item = {{ model.name }}::findOrFail($id);
+        return view("$this->viewPath.show", compact('item'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $item = {{ model.name }}::findOrFail($id);
+        $item->_token = csrf_token();
+        $item->_method = 'PATCH';
+        $item->_uri = "/$this->routePath/$item->id";
+        return view("$this->viewPath.form", compact('item'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \{{ project.NameSpace }}\{{ request.FileType.NameSpace }}\{{ request.name }}  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update({{ request.name }} $request, $id)
+    {
+        $item = {{ model.name }}::findOrFail($id);
+        $item->update($request->validated());
+        return redirect("/$this->routePath/$item->id");
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        {{ model.name }}::destroy($id);
+        return redirect("/$this->routePath");
+    }
+}
