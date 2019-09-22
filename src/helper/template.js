@@ -1,13 +1,13 @@
-import controller from '../template/controller.txt'
-import controllerapi from '../template/controllerapi.txt'
-import factory from '../template/factory.txt'
-import migration from '../template/migration.txt'
-import model from '../template/model.txt'
-import policy from '../template/policy.txt'
-import request from '../template/request.txt'
-import resource from '../template/resource.txt'
-import seeder from '../template/seeder.txt'
-import test from '../template/test.txt'
+import controller from 'raw-loader!../template/controller.txt';
+import controllerapi from 'raw-loader!../template/controllerapi.txt';
+import factory from 'raw-loader!../template/factory.txt';
+import migration from 'raw-loader!../template/migration.txt';
+import model from 'raw-loader!../template/model.txt';
+import policy from 'raw-loader!../template/policy.txt';
+import request from 'raw-loader!../template/request.txt';
+import resource from 'raw-loader!../template/resource.txt';
+import seeder from 'raw-loader!../template/seeder.txt';
+import test from 'raw-loader!../template/test.txt';
 
 export default {
     controller,
@@ -20,4 +20,4 @@ export default {
     resource,
     seeder,
     test
-}
+};
