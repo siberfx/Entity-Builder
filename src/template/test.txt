@@ -36,7 +36,7 @@ class {{ file.name }} extends TestCase
 
     public function testUpdate()
     {
-        $item = {{ model.name }}::findOrFail(static::$id)->toArray();
+        $item = {{ model.name }}::query()->findOrFail(static::$id)->toArray();
         $response = $this->patchJson("$this->uri/" . static::$id, $item);
         $response->assertSuccessful();
     }

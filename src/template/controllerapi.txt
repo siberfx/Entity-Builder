@@ -15,7 +15,7 @@ class {{ file.name }} extends Controller
      */
     public function index()
     {
-        $list = {{ model.name }}::all();
+        $list = {{ model.name }}::query()->paginate();
         return response()->json(compact('list'));
     }
 
@@ -41,7 +41,7 @@ class {{ file.name }} extends Controller
      */
     public function show($id)
     {
-        $item = {{ model.name }}::findOrFail($id);
+        $item = {{ model.name }}::query()->findOrFail($id);
         return response()->json(compact('item'));
     }
 
@@ -54,7 +54,7 @@ class {{ file.name }} extends Controller
      */
     public function update({{ request.name }} $request, $id)
     {
-        $item = {{ model.name }}::findOrFail($id);
+        $item = {{ model.name }}::query()->findOrFail($id);
         $item->update($request->validated());
         return response()->json(compact('item'));
     }
