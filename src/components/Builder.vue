@@ -1,8 +1,7 @@
 <template>
     <div>
-        <template v-if="'project' == bus.tab">
-            <h1 style="display: inline">Project</h1>
-
+        <div v-if="'project' == bus.tab" class="title">
+            <h1>Project</h1>
             <span class="btn-group">
                 <span v-on:click="make" class="btn btn-primary">New</span>
                 <label class="btn btn-info">
@@ -12,7 +11,7 @@
                 <span @click="download" :disabled="bus.project==null" class="btn btn-success">Download</span>
             </span>
             <span v-if="bus.project">{{ bus.project.fileName }}</span>
-        </template>
+        </div>
 
         <Project v-if="bus.project"></Project>
     </div>

@@ -49,6 +49,11 @@
 
     .title h1 {
         display: inline;
+        margin-right: 4px;
+    }
+
+    .title .btn-group {
+        margin-right: 4px
     }
 
     .checkbox {
