@@ -1,10 +1,8 @@
 <template>
     <div>
-        <div v-for="file in bus.project.FileTypeManager.list" :key="file.name">
-            <template v-if="file.hasTab==false">
-                <File :file="find(file.name)" :type="file.name"></File>
-                <br /><br />
-            </template>
+        <div v-for="file in fileWithoutTab" :key="file.name">
+            <File :file="find(file.name)" :type="file.name"></File>
+            <br /><br />
         </div>
     </div>
 </template>
@@ -20,6 +18,11 @@
             return {
                 bus
             };
+        },
+        computed: {
+            fileWithoutTab() {
+                return bus.project.FileTypeManager.list.filter(file => file.hasTab == false);
+            }
         },
         methods: {
             find(type) {
