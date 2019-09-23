@@ -3,8 +3,8 @@
         <div @mouseover="hover = true" @mouseleave="hover = false" class="title file-title">
             <h1>{{ type }}</h1>
             <template v-if="file">
-                <span v-if="hover" @click="remove" class="btn btn-danger"> X </span>
                 <span v-if="hover" class="btn-group">
+                    <span v-if="hover" @click="remove" class="btn btn-danger"> X </span>
                     <span @click="template" class="btn btn-primary">Template</span>
                     <span @click="preview" class="btn btn-success">Preview</span>
                 </span>

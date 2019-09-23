@@ -1,8 +1,8 @@
 <template>
     <tr>
         <td>
-            <span @click="$emit('remove', relation)" class="btn btn-danger"> X </span>
             <div class="btn-group">
+                <span @click="$emit('remove', relation)" class="btn btn-danger"> X </span>
                 <span @click="manager.moveUp(relation)" class="btn btn-default"> ↑ </span>
                 <span @click="manager.moveDown(relation)" class="btn btn-default"> ↓ </span>
             </div>

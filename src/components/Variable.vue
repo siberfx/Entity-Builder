@@ -14,8 +14,8 @@
         <tbody>
             <tr v-for="variable in manager.list" :key="variable.name">
                 <td>
-                    <span v-on:click="remove(variable)" class="btn btn-danger"> X </span>
                     <div class="btn-group">
+                        <span v-on:click="remove(variable)" class="btn btn-danger"> X </span>
                         <span v-on:click="manager.moveUp(variable)" class="btn btn-default"> ↑ </span>
                         <span v-on:click="manager.moveDown(variable)" class="btn btn-default"> ↓ </span>
                     </div>

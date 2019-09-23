@@ -14,8 +14,8 @@
         <tbody>
             <tr v-for="entity in manager.list" :key="entity.name">
                 <td>
-                    <span @click="remove(entity)" class="btn btn-danger"> X </span>
                     <div class="btn-group">
+                        <span @click="remove(entity)" class="btn btn-danger"> X </span>
                         <span @click="manager.moveUp(entity)" class="btn btn-default"> ↑ </span>
                         <span @click="manager.moveDown(entity)" class="btn btn-default"> ↓ </span>
                         <span @click="zip(entity)" class="btn btn-success">Zip</span>

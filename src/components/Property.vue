@@ -15,8 +15,8 @@
         <tbody>
             <tr v-for="property in manager.list" :key="property.name">
                 <td>
-                    <span v-on:click="remove(property)" class="btn btn-danger"> X </span>
                     <div class="btn-group">
+                        <span v-on:click="remove(property)" class="btn btn-danger"> X </span>
                         <span v-on:click="manager.moveUp(property)" class="btn btn-default"> ↑ </span>
                         <span v-on:click="manager.moveDown(property)" class="btn btn-default"> ↓ </span>
                     </div>
