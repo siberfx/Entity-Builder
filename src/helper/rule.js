@@ -57,7 +57,7 @@ function setUnique(entity) {
             const found = entity.FieldManager.find(field.name);
             if (found) {
                 const rule = add(found, 'unique', false);
-                rule.value = entity.name;
+                rule.value = entity.tableName;
             }
         }
     });

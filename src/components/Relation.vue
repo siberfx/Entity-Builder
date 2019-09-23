@@ -71,7 +71,7 @@
                 const list = [item].concat(bus.project.EntityManager.list);
                 LDData.show('Select a Table', list, 'name', null, entity => {
                     try {
-                        this.relation.pivot = entity.name;
+                        this.relation.pivot = entity.tableName;
                     } catch (error) {
                         see(error, 400);
                     }

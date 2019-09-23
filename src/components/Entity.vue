@@ -25,7 +25,7 @@
                     <span @click="setName(entity)" class="btn btn-default">{{ entity.name }}</span>
                 </td>
                 <td>
-                    <span @click="setTableName(entity)" class="btn btn-default">{{ entity.Table.snakeCase }}</span>
+                    <span @click="setTableName(entity)" class="btn btn-default">{{ entity.tableName }}</span>
                 </td>
                 <td>
                     <span v-for="file in entity.FileManager.list" :key="file.fileTypeName">

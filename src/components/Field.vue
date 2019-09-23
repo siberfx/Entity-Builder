@@ -65,7 +65,7 @@
                 <td>
                     <select @change="addName($event.target.value)" class="form-control">
                         <option selected="true" disabled="disabled">...</option>
-                        <option v-for="entity in EntityList" :key="entity.name">{{ entity.snakeCase }}_id</option>
+                        <option v-for="entity in EntityList" :key="entity.name">{{ entity.tableName }}_id</option>
                     </select>
                 </td>
                 <td>

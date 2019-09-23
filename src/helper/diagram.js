@@ -18,7 +18,7 @@ function makeEntity(entity) {
         list.push(`${field.name}: ${field.type}`);
     });
     const field = list.join(';');
-    return `[${entity.name}|${field}]`;
+    return `[${entity.tableName}|${field}]`;
 }
 
 function makeRelation(entity, project) {
@@ -31,8 +31,8 @@ function makeRelation(entity, project) {
 }
 
 function link(entity, other, relation) {
-    const from = entity.name;
-    const to = other.name;
+    const from = entity.tableName;
+    const to = other.tableName;
     const ttt = type(relation.type);
     return `[${from}]${ttt}[${to}]`;
 }
