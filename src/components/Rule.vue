@@ -25,7 +25,7 @@
 
         <template v-else>
             <span>{{ rule.name }}</span>
-            <span v-if="rule.isBoolean===false">{{ rule.value }}</span>
+            <span v-if="rule.isBoolean===false"> {{ rule.value }}</span>
         </template>
     </span>
 </template>
