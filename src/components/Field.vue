@@ -81,10 +81,8 @@
 <script>
     import bus from '../helper/event';
     import { see, sure, enter } from '../helper/dialogue';
-    import { CommonFieldList, FieldTypeList, IntegerFieldList } from '../helper/field';
+    import { CommonFieldList, CommonTypeList, FieldTypeList, IntegerFieldList } from '../helper/field';
     import { LDData } from './ListDialogue';
-
-    const CommonTypeList = ['char', 'string', 'text', 'decimal', 'float', 'integer'];
 
     export default {
         name: 'Field',

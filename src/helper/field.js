@@ -2,6 +2,8 @@ import Entity from './entity';
 
 export const FieldTypeList = Entity.FieldTypeList;
 
+export const CommonTypeList = ['integer', 'char', 'string', 'text', 'dateTime', 'timestamp', 'decimal', 'float'];
+
 export const IntegerFieldList = [
     new Entity.Field('id', 'increments'),
     new Entity.Field('age', 'integer'),
