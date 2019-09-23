@@ -53,7 +53,7 @@
                     }
                 }
 
-                CDData.show('Migration', template, true, original, code => {
+                CDData.show(type.name, template, true, original, code => {
                     if (code === original) {
                         type.template = '';
                     } else {
