@@ -6,9 +6,8 @@ use {{ project.NameSpace }}\{{ model.FileType.NameSpace }}\{{ model.name }};
 use Faker\Generator as Faker;
 
 $factory->define({{ model.name }}::class, function (Faker $faker) {
-{% for variable in file.VariableManager.list %}
-    {% if variable.isStatic %}static{% endif %} ${{ variable.name }} = {{ variable.value }};
-{% endfor %}
+    static $index = 0;
+    $index += 1;
     return [
 {% for field in entity.FieldManager.list %}{% if field.seed.text %}
         '{{ field.name }}' => {{ field.seed.text }},
