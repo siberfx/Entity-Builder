@@ -23,9 +23,9 @@ class {{ file.name }} extends TestCase
     {
         $item = factory({{ model.name }}::class)->make()->toArray();
         $response = $this->postJson($this->uri, $item);
+        $response->assertSuccessful();
         $data = $response->json();
         static::$id = $data['item']['id'];
-        $response->assertSuccessful();
     }
 
     public function testShow()
