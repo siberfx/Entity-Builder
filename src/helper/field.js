@@ -36,7 +36,13 @@ function exclude(field) {
     field.included = false;
 }
 
-exclude(IntegerFieldList[0]);
+const ExcludeIntegerList = ['id', 'user_id'];
+ExcludeIntegerList.forEach(name => {
+    const found = IntegerFieldList.find(field => field.name == name);
+    if (found) {
+        exclude(found);
+    }
+});
 
 const password = new Entity.Field('password', 'char', '', false, 60);
 CommonFieldList.push(password);
