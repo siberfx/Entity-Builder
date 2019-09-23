@@ -2,8 +2,10 @@
     <Dialogue :dData="CDData.dData">
         <template slot="title">
             {{ CDData.title }}
-            <span v-if="CDData.editing" @click="save" class="btn btn-primary">Save</span>
-            <span v-if="CDData.editing" @click="reset" class="btn btn-warning">Reset</span>
+            <span class="btn-group">
+                <span v-if="CDData.editing" @click="save" class="btn btn-primary">Save</span>
+                <span v-if="CDData.editing" @click="reset" class="btn btn-warning">Reset</span>
+            </span>
         </template>
         <template slot="body">
             <textarea v-if="CDData.editing" v-model="CDData.code" class="form-control" rows="22" spellcheck="false"></textarea>
