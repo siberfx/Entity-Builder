@@ -1,0 +1,35 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class {{ file.name }} extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('{{ entity.tableName }}', function (Blueprint $table) {
+{% for field in entity.FieldManager.list %}
+            {{ field.text }};
+{% endfor %}
+{% for index in entity.IndexManager.list %}
+            {{ index.text }};
+{% endfor %}
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('{{ entity.tableName }}');
+    }
+}

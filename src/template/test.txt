@@ -1,0 +1,50 @@
+<?php
+
+namespace Tests\Feature\Controller;
+
+use {{ project.NameSpace }}\{{ model.FileType.NameSpace }}\{{ model.name }};
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\TestResponse;
+
+class {{ file.name }} extends TestCase
+{
+    static $id = 0;
+    protected $uri = '/api/{{ entity.snakeCase }}';
+
+    public function testIndex()
+    {
+        $response = $this->getJson($this->uri);
+        $response->assertSuccessful();
+    }
+
+    public function testStore()
+    {
+        $item = factory({{ model.name }}::class)->make()->toArray();
+        $response = $this->postJson($this->uri, $item);
+        $response->assertSuccessful();
+        $data = $response->json();
+        static::$id = $data['item']['id'];
+    }
+
+    public function testShow()
+    {
+        $response = $this->getJson("$this->uri/" . static::$id);
+        $response->assertSuccessful();
+    }
+
+    public function testUpdate()
+    {
+        $item = {{ model.name }}::query()->findOrFail(static::$id)->toArray();
+        $response = $this->patchJson("$this->uri/" . static::$id, $item);
+        $response->assertSuccessful();
+    }
+
+    public function testDestroy()
+    {
+        $response = $this->deleteJson("$this->uri/" . static::$id);
+        $response->assertSuccessful();
+    }
+
+}

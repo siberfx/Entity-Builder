@@ -1,0 +1,59 @@
+<?php
+
+namespace {{ project.NameSpace }}\{{ file.FileType.NameSpace }};
+
+use {{ project.NameSpace }}\{{ model.FileType.NameSpace }}\User;
+use {{ project.NameSpace }}\{{ model.FileType.NameSpace }}\{{ model.name }};
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class {{ file.name }}
+{
+    use HandlesAuthorization;
+
+    /**
+     * Determine whether the user can view the {{ model.name }}.
+     *
+     * @param  \{{ project.NameSpace }}\{{ model.FileType.NameSpace }}\User  $user
+     * @param  \{{ project.NameSpace }}\{{ model.FileType.NameSpace }}\{{ model.name }}  ${{ model.snakeCase }}
+     * @return mixed
+     */
+    public function view(User $user, {{ model.name }} ${{ model.snakeCase }})
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can create {{ model.name }}.
+     *
+     * @param  \{{ project.NameSpace }}\{{ model.FileType.NameSpace }}\User  $user
+     * @return mixed
+     */
+    public function create(User $user)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can update the {{ model.name }}.
+     *
+     * @param  \{{ project.NameSpace }}\{{ model.FileType.NameSpace }}\User  $user
+     * @param  \{{ project.NameSpace }}\{{ model.FileType.NameSpace }}\{{ model.name }}  ${{ model.snakeCase }}
+     * @return mixed
+     */
+    public function update(User $user, {{ model.name }} ${{ model.snakeCase }})
+    {
+        return $user->id === ${{ model.snakeCase }}->user_id;
+    }
+
+    /**
+     * Determine whether the user can delete the {{ model.name }}.
+     *
+     * @param  \{{ project.NameSpace }}\{{ model.FileType.NameSpace }}\User  $user
+     * @param  \{{ project.NameSpace }}\{{ model.FileType.NameSpace }}\{{ model.name }}  ${{ model.snakeCase }}
+     * @return mixed
+     */
+    public function delete(User $user, {{ model.name }} ${{ model.snakeCase }})
+    {
+        return $user->id === ${{ model.snakeCase }}->user_id;
+    }
+}

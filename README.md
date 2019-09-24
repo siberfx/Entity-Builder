@@ -1,4 +1,33 @@
-# entity-builder
+# Entity-Builder
+
+:tomato: Laravel code generator + GUI: Intuitive Convenient Efficient [Online](https://googee.github.io/Entity-Builder/dist)
+
+:star2: Please leave a star if you find it helpful.
+
+
+## Feature
+
+- Load / Save Project JSON
+- Zip and download PHP code
+- Deploy PHP code online
+- Customize PHP templates
+- Design table fields and indexes
+- Define model factories
+- Manage model relations
+- Set field validation rules
+- Generat Controller
+- Generat Diagram
+- Generat Factory
+- Generat Migration
+- Generat Model
+- Generat Policy
+- Generat Request
+- Generat Resource
+- Generat Seeder
+- Generat Test
+
+![table](https://github.com/GooGee/Entity-Builder/raw/gh-pages/table.gif)
+
 
 ## Project setup
 ```
@@ -24,3 +53,20 @@ npm run test
 ```
 npm run lint
 ```
+
+
+## Deploy PHP code online
+
+If you want to deploy PHP code online, then use this [package](https://github.com/GooGee/Entity)
+
+Notice: Make sure you have enabled the CORS in you server, otherwise it won't work.
+
+
+## Template Document
+
+[Document](https://mozilla.github.io/nunjucks/templating.html)
+
+
+## Entity Document
+
+[Document](https://googee.github.io/Entity-Core/docs/)
