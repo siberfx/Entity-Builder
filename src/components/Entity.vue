@@ -5,7 +5,7 @@
         </caption>
         <thead>
             <tr>
-                <th width="180px"></th>
+                <th width="200px"></th>
                 <th>Name</th>
                 <th>Table</th>
                 <th>File</th>
@@ -18,7 +18,8 @@
                         <span @click="remove(entity)" class="btn btn-danger"> X </span>
                         <span @click="manager.moveUp(entity)" class="btn btn-default"> ↑ </span>
                         <span @click="manager.moveDown(entity)" class="btn btn-default"> ↓ </span>
-                        <span @click="zip(entity)" class="btn btn-success">Zip</span>
+                        <span v-if="bus.php" @click="deployGroup(entity)" class="btn btn-success">Deploy</span>
+                        <span v-else @click="zip(entity)" class="btn btn-success">Zip</span>
                     </div>
                 </td>
                 <td>
@@ -28,16 +29,19 @@
                     <span @click="setTableName(entity)" class="btn btn-default">{{ entity.tableName }}</span>
                 </td>
                 <td>
-                    <span v-for="file in entity.FileManager.list" :key="file.fileTypeName">
-                        {{ file.fileTypeName }}
-                    </span>
+                    <div class="btn-group">
+                        <span v-for="file in entity.FileManager.list" @click="deploy(file)" :key="file.fileTypeName" class="btn btn-default btn-sm">
+                            {{ file.fileTypeName }}
+                        </span>
+                    </div>
                 </td>
             </tr>
         </tbody>
         <tfoot>
             <tr>
                 <td>
-                    <span @click="zipAll" class="btn btn-success">Zip All</span>
+                    <span v-if="bus.php" @click="deployAll" class="btn btn-success">Deploy</span>
+                    <span v-else @click="zipAll" class="btn btn-success">Zip All</span>
                 </td>
                 <td></td>
                 <td></td>
@@ -49,8 +53,9 @@
 
 <script>
     import bus from '../helper/event';
-    import { zipAll, zipEntity } from '../helper/zip';
     import { see, sure, enter } from '../helper/dialogue';
+    import { deployFile, deployGroup, deployAll } from '../helper/request';
+    import { zipAll, zipEntity } from '../helper/zip';
 
     export default {
         name: 'Entity',
@@ -89,6 +94,23 @@
                     if (result.value) {
                         this.manager.remove(entity);
                     }
+                });
+            },
+            deploy(file) {
+                if (bus.php) {
+                    deployFile(bus.project, bus.entity, file).then(response => {
+                        see(response.data.message, 200);
+                    });
+                }
+            },
+            deployGroup(entity) {
+                deployGroup(bus.project, entity).then(response => {
+                    see(response.data.message, 200);
+                });
+            },
+            deployAll() {
+                deployAll(bus.project).then(response => {
+                    see(response.data.message, 200);
                 });
             },
             zip(entity) {

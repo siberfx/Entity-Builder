@@ -3,6 +3,7 @@ import Vue from 'vue';
 const bus = new Vue({
     data: {
         tab: 'project',
+        php: false,
         project: null,
         entity: null,
         file: null,

@@ -7,7 +7,7 @@ nunjucks.configure({
     autoescape: false
 });
 
-export function save(project) {
+export function download(project) {
     const name = project.fileName;
     const result = JSON.stringify(project);
     // console.log(result)
