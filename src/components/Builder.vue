@@ -40,30 +40,40 @@
             connect() {
                 enter('Please enter the domain', 'http://localhost').then(result => {
                     if (result.value) {
-                        connect(result.value).then(response => {
-                            try {
-                                // console.log(response)
-                                if (response.data.data) {
-                                    const json = JSON.parse(response.data.data);
-                                    bus.project = loadProject(json);
-                                    if (bus.project.EntityManager.list.length > 0) {
-                                        bus.show(bus.project.EntityManager.list[0]);
+                        connect(result.value)
+                            .then(response => {
+                                try {
+                                    // console.log(response)
+                                    if (response.data.data) {
+                                        const json = JSON.parse(response.data.data);
+                                        bus.project = loadProject(json);
+                                        if (bus.project.EntityManager.list.length > 0) {
+                                            bus.show(bus.project.EntityManager.list[0]);
+                                        }
                                     }
-                                } else {
-                                    this.make();
+                                    bus.php = true;
+                                } catch (error) {
+                                    see(error, 400);
                                 }
-                                bus.php = true;
-                            } catch (error) {
-                                see(error, 400);
-                            }
-                        });
+                            })
+                            .catch(error => {
+                                see(error.message, 400);
+                            });
                     }
                 });
             },
             save() {
-                save(bus.project).then(response => {
-                    see(response.data.message, 200);
-                });
+                if (bus.project == null) {
+                    return;
+                }
+
+                save(bus.project)
+                    .then(response => {
+                        see(response.data.message, 200);
+                    })
+                    .catch(error => {
+                        see(error.message, 400);
+                    });
             },
             warning() {
                 if (bus.project == null) {

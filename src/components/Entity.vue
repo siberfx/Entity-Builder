@@ -65,7 +65,6 @@
                 bus
             };
         },
-        created() {},
         methods: {
             setName(entity) {
                 enter('Please enter the Main name', entity.name).then(result => {
@@ -98,20 +97,32 @@
             },
             deploy(file) {
                 if (bus.php) {
-                    deployFile(bus.project, bus.entity, file).then(response => {
-                        see(response.data.message, 200);
-                    });
+                    deployFile(bus.project, bus.entity, file)
+                        .then(response => {
+                            see(response.data.message, 200);
+                        })
+                        .catch(error => {
+                            see(error.message, 400);
+                        });
                 }
             },
             deployGroup(entity) {
-                deployGroup(bus.project, entity).then(response => {
-                    see(response.data.message, 200);
-                });
+                deployGroup(bus.project, entity)
+                    .then(response => {
+                        see(response.data.message, 200);
+                    })
+                    .catch(error => {
+                        see(error.message, 400);
+                    });
             },
             deployAll() {
-                deployAll(bus.project).then(response => {
-                    see(response.data.message, 200);
-                });
+                deployAll(bus.project)
+                    .then(response => {
+                        see(response.data.message, 200);
+                    })
+                    .catch(error => {
+                        see(error.message, 400);
+                    });
             },
             zip(entity) {
                 try {
