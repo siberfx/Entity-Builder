@@ -11,7 +11,8 @@
                 <th>Length / Enum</th>
                 <th>Default</th>
                 <th>Comment</th>
-                <th>Nullable</th>
+                <th>Allow Null</th>
+                <th>Unsigned</th>
             </tr>
         </thead>
         <tbody>
@@ -40,6 +41,7 @@
                 </td>
                 <td><input v-model="field.comment" class="form-control" type="text" /></td>
                 <td><input v-model="field.allowNull" class="checkbox" type="checkbox" /></td>
+                <td><input v-model="field.unsigned" class="checkbox" type="checkbox" /></td>
             </tr>
         </tbody>
         <tfoot>
@@ -71,6 +73,7 @@
                 <td>
                     <span v-on:click="add" class="btn btn-primary plus"> + </span>
                 </td>
+                <td></td>
                 <td></td>
                 <td></td>
             </tr>
