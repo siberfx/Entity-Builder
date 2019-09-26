@@ -15,6 +15,10 @@ export function load() {
     return request.get('/entity');
 }
 
+export function getDB() {
+    return request.get('/entity/table');
+}
+
 export function save(project) {
     return request.post('/entity', {
         project: JSON.stringify(project)
