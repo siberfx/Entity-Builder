@@ -67,7 +67,7 @@ class {{ model.name }} extends Model
      */
     public $timestamps = {{ entity.FieldManager.hasCreateAndUpdateTimeStamp }};
 
-{% for relation in model.RelationManager.list %}
+{% for relation in entity.RelationManager.list %}
     public function {{ relation.name }}()
     {
         return {{ relation.text }};
