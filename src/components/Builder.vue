@@ -56,7 +56,7 @@
                                         }
                                     } else {
                                         if (bus.project == null) {
-                                            sure('Do you want to load table from your database?')
+                                            sure('Do you want to load tables from your database schema?')
                                                 .then(result => {
                                                     if (result.value) {
                                                         this.convert();
