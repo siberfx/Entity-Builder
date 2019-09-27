@@ -48,8 +48,8 @@
                                     if (bus.project) {
                                         return;
                                     }
-                                    if (response.data.data) {
-                                        const json = JSON.parse(response.data.data);
+                                    if (response.data) {
+                                        const json = JSON.parse(response.data);
                                         bus.project = loadProject(json);
                                         if (bus.project.EntityManager.list.length > 0) {
                                             bus.show(bus.project.EntityManager.list[0]);
@@ -80,9 +80,9 @@
             convert() {
                 getDB()
                     .then(response => {
-                        if (response.data.data) {
+                        if (response.data) {
                             bus.project = makeProject('entity');
-                            bus.project.convertDB(response.data.data);
+                            bus.project.convertDB(response.data);
                             if (bus.project.EntityManager.list.length > 0) {
                                 bus.show(bus.project.EntityManager.list[0]);
                             }
@@ -99,7 +99,7 @@
 
                 save(bus.project)
                     .then(response => {
-                        see(response.data.message, 200);
+                        see(response.message, 200);
                     })
                     .catch(error => {
                         see(error.message, 400);
