@@ -23,10 +23,10 @@
             <span v-if="relation.type == 'belongsToMany'" @click="setPivot" class="btn btn-default">{{ plus(relation.pivot) }}</span>
         </td>
         <td>
-            <span @click="setKey('foreignKey')" class="btn btn-default">{{ plus(relation.foreignKey) }}</span>
+            <span v-if="hasForeignKey" @click="setKey('foreignKey')" class="btn btn-default">{{ plus(relation.foreignKey) }}</span>
         </td>
         <td>
-            <span @click="setKey('localKey')" class="btn btn-default">{{ plus(relation.localKey) }}</span>
+            <span v-if="hasLocalKey" @click="setKey('localKey')" class="btn btn-default">{{ plus(relation.localKey) }}</span>
         </td>
     </tr>
 </template>
@@ -44,8 +44,14 @@
                 bus
             };
         },
-        created() {},
-        computed: {},
+        computed: {
+            hasForeignKey() {
+                return this.relation.type != 'belongsTo';
+            },
+            hasLocalKey() {
+                return this.relation.type == 'belongsTo' || this.relation.type == 'belongsToMany';
+            }
+        },
         methods: {
             plus(key) {
                 if (key) {
