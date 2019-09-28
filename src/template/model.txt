@@ -11,6 +11,11 @@ class User extends Authenticatable
 {% else %}
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * class {{ model.name }}
+ * {% for field in entity.FieldManager.list %}
+ * @property {{ field.phpType }} ${{ field.name }}{% endfor %}
+ */
 class {{ model.name }} extends Model
 {
 {% endif %}
