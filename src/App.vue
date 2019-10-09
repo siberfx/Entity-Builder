@@ -71,5 +71,7 @@
 
     .btn-primary.plus {
         width: 100%;
+        font-size: large;
+        font-weight: bold;
     }
 </style>
