@@ -28,12 +28,14 @@
             <span v-if="field.allowNull">Allow Null</span>
         </div>
 
-        <div v-if="editing">
-            <label><input v-model="field.unsigned" class="checkbox" type="checkbox" /> Unsigned</label>
-        </div>
-        <div v-else>
-            <span v-if="field.unsigned">Unsigned</span>
-        </div>
+        <template v-if="field.isNumber">
+            <div v-if="editing">
+                <label><input v-model="field.unsigned" class="checkbox" type="checkbox" /> Unsigned</label>
+            </div>
+            <div v-else>
+                <span v-if="field.unsigned">Unsigned</span>
+            </div>
+        </template>
 
         <div v-if="editing">
             <span @click.stop="editing=false" class="btn btn-primary">OK</span>
