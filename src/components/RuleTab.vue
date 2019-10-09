@@ -7,6 +7,7 @@
         </ul>
 
         <div v-if="editing">
+            <br>
             <ul class="nav nav-tabs">
                 <li>
                     <span @click="editing=false" class="btn btn-primary">OK</span>&nbsp;
