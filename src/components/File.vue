@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="title file-title">
+        <div class="title file-title button-cell">
             <h1>{{ type }}</h1>
             <template v-if="file">
                 <span class="btn-group">
