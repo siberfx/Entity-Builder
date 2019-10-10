@@ -2,7 +2,7 @@
     <div>
         <div v-for="file in bus.project.FileTypeManager.list" :key="file.name">
             <template v-if="file.name==bus.type">
-                <table class="table table-striped">
+                <table class="table">
                     <caption class="title">
                         <h1>{{ file.name }}</h1>
                         <span v-if="!file.original" @click="remove(file)" class="btn btn-danger"> X </span>
