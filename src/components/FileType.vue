@@ -38,18 +38,6 @@
                                 <span @click="change('suffix', file)" class="btn btn-default">{{ plus(file.suffix) }}</span>
                             </td>
                         </tr>
-                        <tr>
-                            <td>templateName</td>
-                            <td>
-                                <span @click="change('templateName', file)" class="btn btn-default">{{ plus(file.templateName) }}</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>template</td>
-                            <td>
-                                <span @click="visible=!visible" class="btn btn-default"> * </span>
-                            </td>
-                        </tr>
                         <tr v-show="visible">
                             <td></td>
                             <td><textarea v-model="file.template" rows="11" class="form-control"></textarea></td>
