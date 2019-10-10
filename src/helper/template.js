@@ -22,6 +22,7 @@ export default {
     resource,
     seeder,
     test,
+    testapi: test,
     react,
     vue
 };
