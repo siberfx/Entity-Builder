@@ -9,7 +9,7 @@
                 <th>Name</th>
                 <th>Type</th>
                 <th>Length / Enum</th>
-                <th>Other</th>
+                <th>Default / Comment / Allow Null</th>
             </tr>
         </thead>
         <tbody>
