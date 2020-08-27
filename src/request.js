@@ -1,5 +1,5 @@
 import axios from 'axios'
-import render from './render.js'
+import { packFile, packEntity } from './pack.js'
 
 const Version = '2.1'
 
@@ -82,20 +82,9 @@ function deploy(data) {
     })
 }
 
-function pack(project, entity, file, data) {
-    const name = file.layer.path + '/' + file.fileName
-    data[name] = render(project, entity, file)
-}
-
-function packEntity(project, entity, data) {
-    entity.FileManager.list.forEach(file => {
-        pack(project, entity, file, data)
-    })
-}
-
 export function deployFile(project, entity, file) {
     const data = {}
-    pack(project, entity, file, data)
+    packFile(project, entity, file, data)
     return deploy(data)
 }
 
