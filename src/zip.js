@@ -1,6 +1,6 @@
 import FileSaver from 'file-saver'
 import JSZip from 'jszip'
-import render from './render.js'
+import { packEntity } from './pack.js'
 
 export function download(name, text) {
     const blob = new Blob([text], { type: 'text/plain;charset=utf-8' })
@@ -8,38 +8,31 @@ export function download(name, text) {
 }
 
 export function zipAll(project) {
-    const zip = new JSZip()
+    const data = {}
     project.EntityManager.list.forEach(entity => {
-        renderEntity(entity, project, zip)
+        packEntity(project, entity, data)
     })
-    zip.generateAsync({ type: 'blob' }).then(blob => {
-        const name = project.name + '.zip'
-        FileSaver.saveAs(blob, name)
-    })
+    zipList(project.name, data)
 }
 
 export function zipEntity(entity, project) {
+    const data = {}
+    packEntity(project, entity, data)
+    zipList(project.name, data)
+}
+
+function zipList(name, data) {
     const zip = new JSZip()
-    renderEntity(entity, project, zip)
+    Object.keys(data).forEach(key => {
+        const namexx = key.split('/').filter(name => name.length)
+        const fileName = namexx.pop()
+        let folder = zip
+        namexx.forEach(name => {
+            folder = folder.folder(name)
+        })
+        folder.file(fileName, data[key])
+    })
     zip.generateAsync({ type: 'blob' }).then(blob => {
-        const name = project.name + '.zip'
-        FileSaver.saveAs(blob, name)
+        FileSaver.saveAs(blob, name + '.zip')
     })
-}
-
-function renderEntity(entity, project, zip) {
-    entity.FileManager.list.forEach(file => {
-        renderFile(file, entity, project, zip)
-    })
-}
-
-function renderFile(file, entity, project, zip) {
-    const list = file.layer.path.split('/')
-    const nameList = list.filter(name => name.length)
-    let folder = zip
-    nameList.forEach(item => {
-        folder = folder.folder(item)
-    })
-    const text = render(project, entity, file)
-    folder.file(file.fileName, text)
 }
