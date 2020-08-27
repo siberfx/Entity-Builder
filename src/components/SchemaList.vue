@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import { convert, getDB, request, getErrorMessage } from '../helpers/request.js'
-import { convertDB } from '../helpers/project.js'
+import { convert, getDB, request, getErrorMessage } from '../request.js'
+import { convertDB } from '../project.js'
 import builder from '../states/builder.js'
 
 export default {

@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import { connect, getErrorMessage } from '../helpers/request.js'
+import { connect, getErrorMessage } from '../request.js'
 import builder from '../states/builder.js'
-import { makePreset, makeProject, loadPreset, loadProject } from '../helpers/project.js'
+import { makePreset, makeProject, loadPreset, loadProject } from '../project.js'
 import sidebar from '../states/sidebar.js'
 
 export default {

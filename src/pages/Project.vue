@@ -34,8 +34,8 @@
 import FileSaver from 'file-saver'
 import PropertyList from '../components/PropertyList.vue'
 import SchemaList from '../components/SchemaList.vue'
-import { request, save, getErrorMessage } from '../helpers/request.js'
-import * as zip from '../helpers/zip.js'
+import { request, save, getErrorMessage } from '../request.js'
+import * as zip from '../zip.js'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
 

@@ -42,9 +42,9 @@
 
 <script>
 import ItemList from './ItemList.vue'
-import render from '../helpers/render.js'
-import { deployFile, deployEntity, request } from '../helpers/request.js'
-import * as zip from '../helpers/zip.js'
+import render from '../render.js'
+import { deployFile, deployEntity, request } from '../request.js'
+import * as zip from '../zip.js'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
 

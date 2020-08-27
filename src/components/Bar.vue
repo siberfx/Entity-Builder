@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { getPreset } from '../helpers/request.js'
+import { getPreset } from '../request.js'
 import builder from '../states/builder.js'
 
 export default {

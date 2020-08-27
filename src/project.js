@@ -1,4 +1,4 @@
-import Entity from '../states/entity.js'
+import Entity from './states/entity.js'
 
 export function convertDB(data, project, preset, skip) {
     const convertor = new Entity.Convertor(project, makePreset(preset), skip)
