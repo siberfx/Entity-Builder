@@ -4,6 +4,7 @@ import { packFile, packEntity } from './pack.js'
 const Version = '2.1'
 
 export let request = null
+let connected = false
 
 export function connect(domain) {
     request = axios.create({
@@ -15,10 +16,15 @@ export function connect(domain) {
         response => {
             const data = response.data
             checkVersion(data)
+            connected = true
             return data
         },
         error => {
-            request = null
+            if (connected) {
+                // ok
+            } else {
+                request = null
+            }
             return Promise.reject(error)
         },
     )
