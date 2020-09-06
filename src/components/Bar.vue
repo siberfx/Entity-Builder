@@ -20,7 +20,6 @@
                         <b-nav-item to="/table" active-class="active"> Table </b-nav-item>
                         <b-nav-item to="/model" active-class="active"> Model </b-nav-item>
                         <b-nav-item to="/factory" active-class="active"> Factory </b-nav-item>
-                        <b-nav-item to="/file" active-class="active"> File </b-nav-item>
                     </template>
                 </b-navbar-nav>
 

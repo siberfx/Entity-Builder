@@ -59,11 +59,6 @@ export default new Router({
             component: require('@/pages/Factory').default,
         },
         {
-            path: '/file',
-            name: 'file',
-            component: require('@/pages/File').default,
-        },
-        {
             path: '*',
             redirect: '/',
         },
