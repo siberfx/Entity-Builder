@@ -27,14 +27,6 @@
         </div>
 
         <div v-if="editing">
-            <span> Default: </span>
-            <b-form-input v-model="field.value"></b-form-input>
-        </div>
-        <div v-else>
-            <span v-if="field.value"> Default: {{ field.value }} </span>
-        </div>
-
-        <div v-if="editing">
             <b-form-checkbox v-model="field.allowNull"> Allow Null </b-form-checkbox>
         </div>
         <div v-else>

@@ -9,6 +9,7 @@
                 <th>Name</th>
                 <th width="222px">Type</th>
                 <th width="111px">Length</th>
+                <th width="111px">Default</th>
                 <th>Other</th>
             </tr>
         </template>
@@ -26,6 +27,9 @@
                 </td>
                 <td>
                     <b-form-input v-if="field.type === 'string' || field.type === 'char'" v-model="field.length" />
+                </td>
+                <td>
+                    <b-form-input v-model="field.value"></b-form-input>
                 </td>
                 <td>
                     <FieldPanel :field="field"></FieldPanel>
@@ -55,7 +59,7 @@
                         </option>
                     </select>
                 </td>
-                <td>
+                <td colspan="2">
                     <select v-model="selectedId" @change="add($event.target.value, 'integer')" class="form-control">
                         <option selected="true" disabled="disabled" value=""> ---- </option>
                         <option v-for="entity in EntityList" :key="entity.name">{{ entity.tableName }}_id</option>
