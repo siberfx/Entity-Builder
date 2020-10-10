@@ -73,9 +73,7 @@ export default {
             }
         },
         remove() {
-            if (confirm('Are you sure?')) {
-                this.manager.remove(this.file)
-            }
+            this.manager.remove(this.file)
         },
         preview(file) {
             try {
