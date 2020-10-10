@@ -46,9 +46,7 @@ export default {
     },
     methods: {
         remove() {
-            if (confirm('Are you sure?')) {
-                this.manager.remove(this.rule)
-            }
+            this.manager.remove(this.rule)
         },
     },
 }

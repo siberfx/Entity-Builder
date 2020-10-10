@@ -1,9 +1,10 @@
 import axios from 'axios'
-import render from './render.js'
+import { packFile, packEntity } from './pack.js'
 
 const Version = '2.1'
 
 export let request = null
+let connected = false
 
 export function connect(domain) {
     request = axios.create({
@@ -15,10 +16,15 @@ export function connect(domain) {
         response => {
             const data = response.data
             checkVersion(data)
+            connected = true
             return data
         },
         error => {
-            request = null
+            if (connected) {
+                // ok
+            } else {
+                request = null
+            }
             return Promise.reject(error)
         },
     )
@@ -82,20 +88,9 @@ function deploy(data) {
     })
 }
 
-function pack(project, entity, file, data) {
-    const name = file.layer.path + '/' + file.fileName
-    data[name] = render(project, entity, file)
-}
-
-function packEntity(project, entity, data) {
-    entity.FileManager.list.forEach(file => {
-        pack(project, entity, file, data)
-    })
-}
-
 export function deployFile(project, entity, file) {
     const data = {}
-    pack(project, entity, file, data)
+    packFile(project, entity, file, data)
     return deploy(data)
 }
 

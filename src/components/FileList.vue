@@ -1,56 +1,42 @@
 <template>
-    <ItemList :manager="manager">
-        <template slot="caption">
+    <table class="table">
+        <caption>
             <h3 class="inline mr11px">File</h3>
             <b-button-group>
                 <b-button @click="zip" variant="outline-success"> Zip </b-button>
                 <b-button v-if="request" @click="deployEntity" variant="outline-success"> Deploy </b-button>
             </b-button-group>
-        </template>
-
-        <template slot="header">
+        </caption>
+        <thead>
             <tr>
-                <th></th>
+                <th style="width: 222px;"></th>
                 <th>Layer Name</th>
                 <th>Class Name</th>
                 <th>File Name</th>
             </tr>
-        </template>
-
-        <template slot="body">
-            <tr v-for="file in manager.list" :key="file.name">
-                <td>
-                    <b-button-group>
-                        <b-button @click="preview(file)" variant="outline-primary"> Preview </b-button>
-                        <b-button @click="download(file)" variant="outline-success"> Download </b-button>
-                        <b-button v-if="request" @click="deploy(file)" variant="outline-success"> Deploy </b-button>
-                    </b-button-group>
-                </td>
-                <td>{{ file.layerName }}</td>
-                <td>{{ file.className }}</td>
-                <td>{{ file.fileName }}</td>
-            </tr>
-        </template>
-
-        <template slot="footer">
+        </thead>
+        <tbody>
+            <File v-for="layer in layerxx" :manager="manager" :layer="layer" :key="layer.name" @show="show"></File>
+        </tbody>
+        <tfoot>
             <b-modal v-model="visible" :title="title" size="xl" hide-footer>
                 <pre>{{ code }}</pre>
             </b-modal>
-        </template>
-    </ItemList>
+        </tfoot>
+    </table>
 </template>
 
 <script>
-import ItemList from './ItemList.vue'
-import render from '../helpers/render.js'
-import { deployFile, deployEntity, request } from '../helpers/request.js'
-import * as zip from '../helpers/zip.js'
+import File from './File.vue'
+import render from '../render.js'
+import { deployFile, deployEntity, request } from '../request.js'
+import * as zip from '../zip.js'
 import builder from '../states/builder.js'
 import sidebar from '../states/sidebar.js'
 
 export default {
     name: 'FileList',
-    components: { ItemList },
+    components: { File },
     props: {
         manager: {
             type: Object,
@@ -62,55 +48,17 @@ export default {
             builder,
             sidebar,
             request,
+            layerxx: builder.project.LayerManager.list,
             title: '',
             code: '',
             visible: false,
         }
     },
     methods: {
-        preview(file) {
-            try {
-                this.title = file.fileName
-                this.code = render(builder.project, sidebar.item, file)
-                this.visible = true
-            } catch (error) {
-                console.error(error)
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
-                })
-            }
-        },
-        download(file) {
-            try {
-                const text = render(builder.project, sidebar.item, file)
-                zip.download(file.fileName, text)
-            } catch (error) {
-                console.error(error)
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
-                })
-            }
-        },
-        deploy(file) {
-            try {
-                deployFile(builder.project, sidebar.item, file)
-                this.$bvToast.toast(`${file.fileName} deployed`, {
-                    title: 'OK',
-                    variant: 'success',
-                    solid: true,
-                })
-            } catch (error) {
-                console.error(error)
-                this.$bvToast.toast(error.message, {
-                    title: 'i',
-                    variant: 'danger',
-                    solid: true,
-                })
-            }
+        show(title, code) {
+            this.title = title
+            this.code = code
+            this.visible = true
         },
         deployEntity() {
             try {

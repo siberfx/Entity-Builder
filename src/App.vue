@@ -28,6 +28,12 @@ export default {
         ListDialogue,
         Top,
     },
+    created() {
+        window.addEventListener('beforeunload', (e) => {
+            e.preventDefault()
+            e.returnValue = ''
+        })
+    },
 }
 </script>
 

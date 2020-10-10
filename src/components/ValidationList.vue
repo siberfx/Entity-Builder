@@ -7,7 +7,10 @@
             <tr>
                 <th width="120px">Field</th>
                 <th width="120px">Type</th>
-                <th>Rule List</th>
+                <th>
+                    Rule List
+                    <span @click="clear" class="btn btn-outline-danger">Clear All</span>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -34,7 +37,7 @@
 
 <script>
 import ScriptButton from '../components/button/ScriptButton.vue'
-import { makePreset } from '../helpers/project.js'
+import { makePreset } from '../project.js'
 import builder from '../states/builder.js'
 import RuleTab from './RuleTab.vue'
 
@@ -59,6 +62,15 @@ export default {
             builder,
             cb: fff => fff(this.entity, builder.project),
         }
+    },
+    methods: {
+        clear() {
+            if (confirm('Are you sure?')) {
+                this.manager.list.forEach(field => {
+                    field.RuleManager.clear()
+                })
+            }
+        },
     },
 }
 </script>
