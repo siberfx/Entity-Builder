@@ -9,7 +9,7 @@
         </caption>
         <thead>
             <tr>
-                <th></th>
+                <th style="width: 222px;"></th>
                 <th>Layer Name</th>
                 <th>Class Name</th>
                 <th>File Name</th>
