@@ -1,8 +1,4 @@
 
-<p align="center">
-    <img src="src/assets/logo.svg" alt="logo" width="222" />
-</p>
-
 # Entity-Builder
 
 :tomato: Laravel generator [Online](https://googee.github.io/Entity-Builder/dist)
